@@ -1,0 +1,43 @@
+# Define menu with prices
+menu = {
+    "Tea": 10,
+    "Coffee": 15,
+    "Samosa": 20,
+    "Sandwich": 30,
+    "Burger": 50,
+    "Pasta": 70,
+    "Juice": 25
+}
+
+# Display menu
+print("Welcome to the Canteen!")
+print("Here is the Menu:")
+for item, price in menu.items():
+    print(f"{item}: ₹{price}")
+
+# Take orders
+order = {}
+while True:
+    item = input("\nEnter item name (or type 'done' to finish): ").title()
+    if item == "Done":
+        break
+    if item in menu:
+        quantity = int(input(f"Enter quantity of {item}: "))
+        if item in order:
+            order[item] += quantity
+        else:
+            order[item] = quantity
+    else:
+        print("Item not found in menu. Please try again.")
+
+# Generate bill
+print("\n====== CANTEEN BILL ======")
+total = 0
+for item, quantity in order.items():
+    price = menu[item] * quantity
+    print(f"{item} x {quantity} = ₹{price}")
+    total += price
+
+print("--------------------------")
+print(f"Total Bill: ₹{total}")
+print("Thank you! Visit again!")
